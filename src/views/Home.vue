@@ -55,7 +55,7 @@ export default {
     this.generateBoxesObjects();
     },
     getWordList(){
-     fetch('http://localhost:8080/nowe.txt')
+     fetch('http://dominikraducki.works/literally/nowe.txt')
     .then(response => response.text())
     .then((data) => {
       this.wordsList = data;
