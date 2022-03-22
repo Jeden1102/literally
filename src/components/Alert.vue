@@ -1,6 +1,6 @@
 <template>
     <div @click="closeAlert" class="alert-box fixed right-4 bottom-4 bg-dark-green text-white  p-5 rounded w-1/2">
-        <h2>ALERT</h2>
+        <h2>ALERT </h2>
         <p><slot></slot></p>
     </div>
 </template>
