@@ -48,14 +48,13 @@ export default {
       this.showBoxes=false
       this.endGame=false
       this.won=true
-          this.loadBoxes();
-
-    window.addEventListener('keydown', this.registerLetter)
-    this.getWordList();
-    this.generateBoxesObjects();
+      this.loadBoxes();
+      window.addEventListener('keydown', this.registerLetter)
+      this.getWordList();
+      this.generateBoxesObjects();
     },
     getWordList(){
-     fetch('http://dominikraducki.works/literally/nowe.txt')
+     fetch('https://dominikraducki.works/literally/nowe.txt')
     .then(response => response.text())
     .then((data) => {
       this.wordsList = data;
@@ -91,11 +90,7 @@ export default {
       let tmp = this.wordTyped+1;
       let tmpLetter = this.letterTyped+1;
       let x =0;
-      if(this.wordTyped==0){
-        x = (tmp*tmpLetter)-1
-      }else{
-        x = (((tmp-1)*5)+tmpLetter)-1;
-      }
+      x = this.wordTyped==0 ? (tmp*tmpLetter)-1 : (((tmp-1)*5)+tmpLetter)-1;
       this.boxes[this.wordTyped][this.letterTyped].letter = key.toUpperCase();
       gsap.from(`#boxik-${x}`, {
       duration: 2,
@@ -113,13 +108,9 @@ export default {
       }
       if(key == "Enter"){
         this.wordTyped++;
-                let userWord = this.boxes[this.wordTyped-1];
+        let userWord = this.boxes[this.wordTyped-1];
         let userString = `${userWord[0].letter}${userWord[1].letter}${userWord[2].letter}${userWord[3].letter}${userWord[4].letter}`;
         if(this.wordsList.includes(userString.toLowerCase())){
-
-
-        console.log(userString)
-          console.log("ok");
         if(this.letterTyped==5){
       let x =0;
       if(this.wordTyped==0){
@@ -138,7 +129,6 @@ export default {
       });
       }
         this.letterTyped =0;
-        console.log(userWord);
         let drawnedWord = this.drawnWord.toUpperCase().split("");
         let direct = 0;
         userWord.forEach((element,index) => {
@@ -165,7 +155,6 @@ export default {
         this.wordTyped--;
         }
       }else{
-        console.log("nie ok");
           this.wordTyped--;
         this.alertText = "Takie słowo nie istnieje :("
         this.showAlert=true;
@@ -189,8 +178,6 @@ export default {
       }
       }
       }
-//TODO : SPRAWDZ CZY SŁOWO JEST W SŁOWNIKU + W PROPSIE DO KONCZEGO DODAĆ INFO JAKIE BYLO DOBRE SŁOWO 
-
     },
       loadBoxes(){
     setTimeout(()=>{
